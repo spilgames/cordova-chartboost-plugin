@@ -14,7 +14,7 @@ This will initialize Chartboost. You will find the appID and the appSignature of
 
 	Chartboost.showInterstitial(success, fail, location);
 
-This will show an Insterstitial Add. The parameters are the success and failure callbacks and the location of the interstitial
+This will show an Insterstitial Add. The parameters are the success and failure callbacks and the location of the interstitial. The callbacks system is still not implemented.
 
 The project still need a lot of work. Right now there are the basic calls to make it work and get interstitials from Chartboost.
 
@@ -22,7 +22,7 @@ INSTALLATION
 -------------
 
 	cordova plugin add https://github.com/spilgames/cordova-chartboost-plugin
-	
+
 
 SUPPORTED PLATFORMS
 -------------------
