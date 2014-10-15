@@ -4,8 +4,8 @@
 	var exec = require('cordova/exec');
 	var cordova = require('cordova');
 
-	Chartboost.init = function(sucessCallback, failCallback, appId,appSignature) {
-		exec(sucessCallback, failCallback, "ChartboostPlugin", "iniChartboost", [
+	Chartboost.init = function(appId, appSignature) {
+		exec(null, null, "ChartboostPlugin", "iniChartboost", [
 				appId, appSignature ]);
 	}
 
