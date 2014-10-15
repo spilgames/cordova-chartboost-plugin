@@ -18,6 +18,17 @@ This will show an Insterstitial Add. The parameters are the success and failure 
 
 The project still need a lot of work. Right now there are the basic calls to make it work and get interstitials from Chartboost.
 
+INSTALLATION
+-------------
+
+	cordova plugin add https://github.com/spilgames/cordova-chartboost-plugin
+	
+
+SUPPORTED PLATFORMS
+-------------------
+
+- Android
+
 TODO
 ------
 
