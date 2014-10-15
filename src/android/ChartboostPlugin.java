@@ -44,6 +44,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			        public void run() {
 			             Chartboost.startWithAppId(cordova.getActivity(), appId , appSignature);
 			             Chartboost.onCreate(cordova.getActivity());
+			             Chartboost.onStart(cordova.getActivity());
 			        }
 			    });
 			
