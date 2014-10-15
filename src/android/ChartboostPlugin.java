@@ -12,7 +12,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 	
 	private static final String ACTION_INI_CHARBOOST = "iniChartboost";
-
+	private static final String ACTION_SHOW_INTERSTITIAL = "showInterstitial";
 	
 	@Override
 	public void onDestroy() {
@@ -48,7 +48,15 @@ public class ChartboostPlugin extends CordovaPlugin{
 			    });
 			
              return true;
-         }
+         }else if(action.equals(ACTION_SHOW_INTERSTITIAL)){
+        	 final String location = args.getString(0);
+        	 cordova.getActivity().runOnUiThread(new Runnable() {
+        		 @Override
+			        public void run() {
+        			 Chartboost.showInterstitial(location);
+        		 }
+        	 });
+       	}
 		return false;
 	}
 }

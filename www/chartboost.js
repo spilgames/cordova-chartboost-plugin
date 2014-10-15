@@ -8,3 +8,7 @@
 		exec(sucessCallback, failCallback, "ChartboostPlugin", "iniChartboost", [
 				appId, appSignature ]);
 	}
+
+	Chartboost.showInterstitial = function(sucessCallback, failCallback, location) {
+		exec(sucessCallback, failCallback, "ChartboostPlugin", "showInterstitial", [location]);
+	}
