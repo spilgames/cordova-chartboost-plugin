@@ -34,4 +34,21 @@
 
     </platform>
 
+
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="ChartboostPlugin">
+				<param name="ios-package" value="ChartboostPlugin"/>
+				<param name="onload" value="true"/>
+			</feature>
+		</config-file>
+		<!-- phonegap implementation of the plugin -->
+		<source-file src="src/ios/Chartboost.m" />
+		<framework src="libs/Chartboost.framework" custom="true" />
+		<!-- framework dependencies -->
+		<framework src="StoreKit.framework" weak="true" />
+		<framework src="Foundation.framework" />
+		<framework src="CoreGraphics.framework" />
+		<framework src="UIKit.framework" />
+	</platform>
 </plugin>
