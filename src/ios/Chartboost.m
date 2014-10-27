@@ -21,7 +21,7 @@
 	NSString* appSignature = [command.arguments objectAtIndex:1];
 	NSString* callbackId = command.callbackId;
 	
-	if(queue == nil){
+	if(_queue == nil){
 		_queue = [NSMutableArray array];    
 	}
 	
@@ -29,12 +29,14 @@
 	[Chartboost startWithAppId:appId
 				appSignature:appSignature
 				delegate:self];
+	
+	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 
-	[Chartboost cacheInterstitial];//force the success/fail load
+	[Chartboost cacheInterstitial:CBLocationDefault];
 }
 
 -(void) showInterstitial:(CDVInvokedUrlCommand*)command {
-	CDVPluginResult* pluginResult = nil;
 	NSString* location = [command.arguments objectAtIndex:0];
 	NSString* callbackId = command.callbackId;
 	
@@ -63,7 +65,7 @@
 		[_queue removeObjectAtIndex:0];
 		
 		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 	}
 }
 
@@ -75,7 +77,7 @@
 		[_queue removeObjectAtIndex:0];
 		
 		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 	}
 }
 
@@ -88,7 +90,7 @@
 		[_queue removeObjectAtIndex:0];
 		
 		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error loading the interstitial"];
-		[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 	}
 }
 
