@@ -8,7 +8,7 @@ Usage
 
 The plugin has the following calls:
 
-	Chartboost.ini(appID,appSignature); 
+	Chartboost.init(appID,appSignature); 
 
 This will initialize Chartboost. You will find the appID and the appSignature of your app on the Chartboost dashboard once you have create an app in your account
 
@@ -28,19 +28,23 @@ SUPPORTED PLATFORMS
 -------------------
 
 - Android
+- iOS
 
 TODO
 ------
 
-- iOS support
 - Callbacks implementation
 - Video calls implementation
 
+CHANGELOG
+---------
 
-CHANGELOG 0.1
--------------
-
+v0.1:
 First version of the plugin:
 - Call to initialize Chartboost with the appId and the appSignature
 - Call to show interestitials 
+
+v0.2:
+Support for iOS platform
+
 
