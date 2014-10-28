@@ -11,7 +11,7 @@ import com.chartboost.sdk.Chartboost;
 public class ChartboostPlugin extends CordovaPlugin{
 	
 	
-	private static final String ACTION_INI_CHARBOOST = "iniChartboost";
+	private static final String ACTION_INI_CHARBOOST = "init";
 	private static final String ACTION_SHOW_INTERSTITIAL = "showInterstitial";
 	
 	@Override
@@ -36,28 +36,31 @@ public class ChartboostPlugin extends CordovaPlugin{
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callback) throws JSONException{
 		
-		 if (action.equals(ACTION_INI_CHARBOOST)) {
-			 final String appSignature = args.getString(1);
-			 final String appId = args.getString(0);
-			 cordova.getActivity().runOnUiThread(new Runnable() {
-			        @Override
-			        public void run() {
-			             Chartboost.startWithAppId(cordova.getActivity(), appId , appSignature);
-			             Chartboost.onCreate(cordova.getActivity());
-			             Chartboost.onStart(cordova.getActivity());
-			        }
-			    });
+		if (action.equals(ACTION_INI_CHARBOOST)) {
+			final String appId = args.getString(0);
+			final String appSignature = args.getString(1);
 			
-             return true;
-         }else if(action.equals(ACTION_SHOW_INTERSTITIAL)){
-        	 final String location = args.getString(0);
-        	 cordova.getActivity().runOnUiThread(new Runnable() {
-        		 @Override
-			        public void run() {
-        			 Chartboost.showInterstitial(location);
-        		 }
-        	 });
-       	}
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Chartboost.startWithAppId(cordova.getActivity(), appId , appSignature);
+					Chartboost.onCreate(cordova.getActivity());
+					Chartboost.onStart(cordova.getActivity());
+				}
+			});
+			
+			return true;
+		}else if(action.equals(ACTION_SHOW_INTERSTITIAL)){
+			final String location = args.getString(0);
+			
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Chartboost.showInterstitial(location);
+				}
+			});
+		}
+		
 		return false;
 	}
 }

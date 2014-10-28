@@ -5,7 +5,7 @@
 	var cordova = require('cordova');
 
 	Chartboost.init = function(appId, appSignature) {
-		exec(null, null, "ChartboostPlugin", "iniChartboost", [
+		exec(null, null, "ChartboostPlugin", "init", [
 				appId, appSignature ]);
 	}
 
