@@ -1,4 +1,4 @@
-Cordova Chartboost plugin v 0.1
+Cordova Chartboost plugin v 0.2
 =============
 
 This plugin will allow you to run Chartboost on cordova projects. 
