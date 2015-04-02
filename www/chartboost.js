@@ -24,3 +24,15 @@
     Chartboost.cacheMoreGames = function(sucessCallback, failCallback, location) {
         exec(sucessCallback, failCallback, "ChartboostPlugin", "cacheMoreGames", [location]);
     }
+
+    Chartboost.showRewardedVideo = function(sucessCallback, failCallback, location) {
+        exec(sucessCallback, failCallback, "ChartboostPlugin", "showRewardedVideo", [location]);
+    }
+
+    Chartboost.cacheRewardedVideo = function(sucessCallback, failCallback, location) {
+        exec(sucessCallback, failCallback, "ChartboostPlugin", "cacheRewardedVideo", [location]);
+    }
+
+    Chartboost.hasRewardedVideo = function(sucessCallback, failCallback, location) {
+        exec(sucessCallback, failCallback, "ChartboostPlugin", "hasRewardedVideo", [location]);
+    }
