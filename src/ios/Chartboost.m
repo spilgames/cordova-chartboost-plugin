@@ -30,7 +30,7 @@
         _queue = [[NSMutableDictionary alloc] init];
     }
 
-    [Chartboost startWithAppId:appId;
+    [Chartboost startWithAppId:appId
 				appSignature:appSignature
 				delegate:self];
 	
@@ -72,7 +72,7 @@
     NSString* callbackKey = [NSString stringWithFormat:@"showMoreGames:%@", location];
 
     [_queue setObject: callbackId forKey:callbackKey];
-    [Chartboost showMoreGames:location];
+    [Chartboost showMoreApps:location];
 }
 
 -(void) cacheMoreGames:(CDVInvokedUrlCommand*)command {
@@ -81,7 +81,7 @@
     NSString* callbackKey = [NSString stringWithFormat:@"cacheMoreGames:%@", location];
 
     [_queue setObject: callbackId forKey:callbackKey];
-    [Chartboost cacheMoreGames:location];
+    [Chartboost cacheMoreApps:location];
 }
 
 #pragma mark -
@@ -89,6 +89,7 @@
 
 -(void) showRewardedVideo:(CDVInvokedUrlCommand*)command {
     NSString* location = [command.arguments objectAtIndex:0];
+    NSString* callbackId = command.callbackId;
     NSString* callbackKey = [NSString stringWithFormat:@"showRewardedVideo:%@", location];
 
     [_queue setObject: callbackId forKey:callbackKey];
@@ -97,6 +98,7 @@
 
 -(void) cacheRewardedVideo:(CDVInvokedUrlCommand*)command {
     NSString* location = [command.arguments objectAtIndex:0];
+    NSString* callbackId = command.callbackId;
     NSString* callbackKey = [NSString stringWithFormat:@"cacheRewardedVideo:%@", location];
 
     [_queue setObject: callbackId forKey:callbackKey];
