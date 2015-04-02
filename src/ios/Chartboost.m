@@ -44,6 +44,30 @@
 	[Chartboost showInterstitial:location];
 }
 
+-(void) cacheInterstitial:(CDVInvokedUrlCommand*)command {
+    NSString* location = [command.arguments objectAtIndex:0];
+    NSString* callbackId = command.callbackId;
+
+    [_queue addObject: callbackId];
+    [Chartboost cacheInterstitial:location];
+}
+
+-(void) showMoreGames:(CDVInvokedUrlCommand*)command {
+    NSString* location = [command.arguments objectAtIndex:0];
+    NSString* callbackId = command.callbackId;
+
+    [_queue addObject: callbackId];
+    [Chartboost showMoreGames:location];
+}
+
+-(void) cacheMoreGames:(CDVInvokedUrlCommand*)command {
+    NSString* location = [command.arguments objectAtIndex:0];
+    NSString* callbackId = command.callbackId;
+
+    [_queue addObject: callbackId];
+    [Chartboost cacheMoreGames:location];
+}
+
 -(BOOL) shouldRequestInterstitialsInFirstSession {
 	return NO;
 }
