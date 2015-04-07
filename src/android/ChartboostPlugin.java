@@ -1,4 +1,4 @@
-package com.spilgames.chartboost.plugin;
+package com.portnou.cordova.plugin.chartboost;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -13,6 +13,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 	private static final String ACTION_INI_CHARBOOST = "init";
 	private static final String ACTION_SHOW_INTERSTITIAL = "showInterstitial";
+	private static final String ACTION_CACHE_INTERSTITIAL = "cacheInterstitial";
 	
 	@Override
 	public void onDestroy() {
@@ -57,6 +58,15 @@ public class ChartboostPlugin extends CordovaPlugin{
 				@Override
 				public void run() {
 					Chartboost.showInterstitial(location);
+				}
+			});
+		}else if(action.equals(ACTION_CACHE_INTERSTITIAL)){
+			final String location = args.getString(0);
+			
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Chartboost.cacheInterstitial(location);
 				}
 			});
 		}
