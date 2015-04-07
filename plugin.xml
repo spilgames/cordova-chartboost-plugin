@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.spilgames.chartboost.plugin"
+    id="com.portnou.cordova.plugin.chartboost"
     version="0.1">
     <name>Cordova Chartboost Plugin</name>
-    <description>Cordova Chartboost plugin</description>
-    <author>Spil Games</author>
+    <description>Cordova Chartboost plugin. Forked from SpilGames's plugin.</description>
+    <author>Alexander S Portnoy</author>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
