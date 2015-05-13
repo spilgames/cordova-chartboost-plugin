@@ -36,3 +36,8 @@
     Chartboost.hasRewardedVideo = function(sucessCallback, failCallback, location) {
         exec(sucessCallback, failCallback, "ChartboostPlugin", "hasRewardedVideo", [location]);
     }
+
+    Chartboost.setDidDismissInterstitialCallback = function(sucessCallback, failCallback, location) {
+        exec(sucessCallback, failCallback, "ChartboostPlugin", "setDidDismissInterstitialCallback", [location]);
+    }
+    
