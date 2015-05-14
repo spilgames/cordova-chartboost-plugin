@@ -144,11 +144,11 @@
 - (void)didDismissInterstitial:(CBLocation)location {
     NSString* callbackKey = [NSString stringWithFormat:@"setDidDismissInterstitialCallback:%@", location];
     if(_queue != nil && [_queue objectForKey:callbackKey] != nil){
-	NSString* callbackId = [_queue objectForKey:callbackKey];
-	[_queue removeObjectForKey:callbackKey];
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
-     }
+		NSString* callbackId = [_queue objectForKey:callbackKey];
+		[_queue removeObjectForKey:callbackKey];
+		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+    }
 }
 
 // Called after an interstitial has been displayed on the screen.
