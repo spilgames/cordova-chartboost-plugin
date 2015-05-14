@@ -39,16 +39,16 @@ public class ChartboostPlugin extends CordovaPlugin{
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callback) throws JSONException {
-		android.util.Log.i(TAG, "execute called: " + action);
+//		android.util.Log.i(TAG, "execute called: " + action + ", args: " + args.toString());
 		me = this;
 		final CallbackContext _callback = callback;
 		if (action.equals(ACTION_INI_CHARBOOST)) {
-			final String appId = args.getString(0);
-			final String appSignature = args.getString(1);			
+			final String app_id = args.getString(0);
+			final String app_sig = args.getString(1);
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					me.chartboost_init(appId, appSignature);
+					me.chartboost_init(app_id, app_sig);
 				}
 			});			
 			return true;
@@ -201,8 +201,9 @@ public class ChartboostPlugin extends CordovaPlugin{
 		}
 	}		
 
-	public void chartboost_init(java.lang.String appId, java.lang.String appSignature) {
-		Chartboost.startWithAppId(cordova.getActivity(), appId, appSignature);
+	public void chartboost_init(java.lang.String app_id, java.lang.String app_sig) {
+		Chartboost.onStart( cordova.getActivity() );//init cb session as onstart override isn't working..
+		Chartboost.startWithAppId(cordova.getActivity(), app_id, app_sig);
 		Chartboost.setDelegate( delegate );
 		Chartboost.onCreate( cordova.getActivity() );
 	}
@@ -272,6 +273,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 		@Override
 		public void didFailToLoadInterstitial(String location, CBImpressionError error) {
+			android.util.Log.e(TAG, error.toString());
 			me.doFailureCallback(location, ACTION_CACHE_INTERSTITIAL);
 			me.doFailureCallback(location, ACTION_SHOW_INTERSTITIAL);
 		}
