@@ -51,7 +51,6 @@ public class ChartboostPlugin extends CordovaPlugin{
 					me.chartboost_init(app_id, app_sig);
 				}
 			});			
-			return true;
 		} else if (action.equals(ACTION_SHOW_INTERSTITIAL)){
 			final String location = args.getString(0);
 			cordova.getActivity().runOnUiThread(new Runnable() {
@@ -117,8 +116,8 @@ public class ChartboostPlugin extends CordovaPlugin{
 				}
 			});
 		}
-		
-		return false;
+		else return false; //easier to return true in all cases but this one...
+		return true;
 	}
 	
 	/**
