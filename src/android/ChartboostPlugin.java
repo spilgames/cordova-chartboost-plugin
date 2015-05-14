@@ -33,16 +33,22 @@ public class ChartboostPlugin extends CordovaPlugin{
 	private static final String ACTION_CACHE_REWARDVIDEO = "cacheRewardedVideo";
 	private static final String ACTION_HAS_REWARDVIDEO = "hasRewardedVideo";
 	private static final String ACTION_SET_DISMISSCALLBACK = "setDidDismissInterstitialCallback";
+	private ChartboostPlugin me;
+	private static final String TAG = "ChartboostPlugin";
+
 
 	@Override
-	public boolean execute(String action, JSONArray args, CallbackContext callback) throws JSONException{
+	public boolean execute(String action, JSONArray args, CallbackContext callback) throws JSONException {
+		android.util.Log.i(TAG, "execute called: " + action);
+		me = this;
+		final CallbackContext _callback = callback;
 		if (action.equals(ACTION_INI_CHARBOOST)) {
 			final String appId = args.getString(0);
 			final String appSignature = args.getString(1);			
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.chartboost_init(appId, appSignature);
+					me.chartboost_init(appId, appSignature);
 				}
 			});			
 			return true;
@@ -51,7 +57,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.showInterstitial( location, callback );
+					me.showInterstitial(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_CACHE_INTERSTITIAL)){
@@ -59,7 +65,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.preloadInterstitial( location, callback );
+					me.preloadInterstitial(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_SHOW_MOREGAMES)){
@@ -67,7 +73,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.showMoreApps( location, callback );
+					me.showMoreApps(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_CACHE_MOREGAMES)){
@@ -75,7 +81,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.preloadMoreApps( location, callback );
+					me.preloadMoreApps(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_SHOW_REWARDVIDEO)){
@@ -83,7 +89,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.showRewardedVideo( location, callback );
+					me.showRewardedVideo(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_CACHE_REWARDVIDEO)){
@@ -91,7 +97,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.preloadRewardedVideo( location, callback );
+					me.preloadRewardedVideo(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_HAS_REWARDVIDEO)){
@@ -99,7 +105,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.hasRewardedVideo( location, callback );
+					me.hasRewardedVideo(location, _callback);
 				}
 			});
 		} else if (action.equals(ACTION_SET_DISMISSCALLBACK)){
@@ -107,7 +113,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					this.setDidDismissInterstitialCallback( location, callback );
+					me.setDidDismissInterstitialCallback(location, _callback);
 				}
 			});
 		}
@@ -118,41 +124,41 @@ public class ChartboostPlugin extends CordovaPlugin{
 	/**
 	 * Some functions required for state change...
 	 */
-	@Override
-	protected void onStart() {
-		super.onStart();
-		Chartboost.onStart( cordova.getActivity() );
-	}
+//	@Override
+//	public void onStart() {
+//		super.onStart();
+//		Chartboost.onStart( cordova.getActivity() );
+//	}
 	
 	@Override
-	protected void onStop() {
+	public void onStop() {
 		super.onStop();
 		Chartboost.onStop( cordova.getActivity() );
 	}
 	
 	@Override
-	protected void onPause() {
-		super.onPause();
+	public void onPause(boolean multitasking) {
+		super.onPause(multitasking);
 		Chartboost.onPause( cordova.getActivity() );
 	}
 	
 	@Override
-	protected void onResume() {
-		super.onResume();
+	public void onResume(boolean multitasking) {
+		super.onResume(multitasking);
 		Chartboost.onResume( cordova.getActivity() );
 	}
 
-	@Override
-	public void onBackPressed() {
-	     // If an interstitial is on screen, close it. Otherwise continue as normal.
-        if (Chartboost.onBackPressed())
-            return;
-        else
-            super.onBackPressed();
-	}
+//	@Override
+//	public void onBackPressed() {
+//	     // If an interstitial is on screen, close it. Otherwise continue as normal.
+//        if (Chartboost.onBackPressed())
+//            return;
+//        else
+//            super.onBackPressed();
+//	}
 	
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Chartboost.onDestroy( cordova.getActivity() );
@@ -260,22 +266,22 @@ public class ChartboostPlugin extends CordovaPlugin{
 		}
 	
 		@Override
-		public void didCacheInterstitial(String location) { 
-			this.doSuccessCallback(location, ACTION_CACHE_INTERSTITIAL);
+		public void didCacheInterstitial(String location) {
+			me.doSuccessCallback(location, ACTION_CACHE_INTERSTITIAL);
 		}
 	
 		@Override
 		public void didFailToLoadInterstitial(String location, CBImpressionError error) {
-			this.doFailureCallback(location, ACTION_CACHE_INTERSTITIAL);		
-			this.doFailureCallback(location, ACTION_SHOW_INTERSTITIAL); 
+			me.doFailureCallback(location, ACTION_CACHE_INTERSTITIAL);
+			me.doFailureCallback(location, ACTION_SHOW_INTERSTITIAL);
 		}
 	
 		@Override
 		public void didDismissInterstitial(String location) {
 			//attempt to callback to JS...
-			this.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
+			me.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
 		}
-	
+
 		@Override
 		public void didCloseInterstitial(String location) { }
 		@Override
@@ -283,7 +289,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 		@Override
 		public void didDisplayInterstitial(String location) {
-			this.doSuccessCallback(location, ACTION_SHOW_INTERSTITIAL);
+			me.doSuccessCallback(location, ACTION_SHOW_INTERSTITIAL);
 		}
 	
 		@Override
@@ -298,18 +304,18 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 		@Override
 		public void didFailToLoadMoreApps(String location, CBImpressionError error) {
-			this.doFailureCallback(location, ACTION_SHOW_MOREGAMES); 
-			this.doFailureCallback(location, ACTION_CACHE_MOREGAMES);
+			me.doFailureCallback(location, ACTION_SHOW_MOREGAMES);
+			me.doFailureCallback(location, ACTION_CACHE_MOREGAMES);
 		}
 	
 		@Override
-		public void didCacheMoreApps(String location) { 
-			this.doSuccessCallback(location, ACTION_CACHE_MOREGAMES);
+		public void didCacheMoreApps(String location) {
+			me.doSuccessCallback(location, ACTION_CACHE_MOREGAMES);
 		}
 	
 		@Override
 		public void didDismissMoreApps(String location) {
-			this.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
+			me.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
 		}
 
 		@Override
@@ -319,7 +325,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 		@Override
 		public void didDisplayMoreApps(String location) {
-			this.doSuccessCallback(location, ACTION_SHOW_MOREGAMES);
+			me.doSuccessCallback(location, ACTION_SHOW_MOREGAMES);
 		}
 	
 		@Override
@@ -332,18 +338,18 @@ public class ChartboostPlugin extends CordovaPlugin{
 	
 		@Override
 		public void didCacheRewardedVideo(String location) {
-			this.doSuccessCallback(location, ACTION_CACHE_REWARDVIDEO);
+			me.doSuccessCallback(location, ACTION_CACHE_REWARDVIDEO);
 		}
 	
 		@Override
 		public void didFailToLoadRewardedVideo(String location, CBImpressionError error) {
-			this.doFailureCallback(location, ACTION_SHOW_REWARDVIDEO);
-			this.doFailureCallback(location, ACTION_CACHE_REWARDVIDEO);			
+			me.doFailureCallback(location, ACTION_SHOW_REWARDVIDEO);
+			me.doFailureCallback(location, ACTION_CACHE_REWARDVIDEO);
 		}
 	
 		@Override
 		public void didDismissRewardedVideo(String location) {
-			this.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
+			me.doSuccessCallback(location, ACTION_SET_DISMISSCALLBACK);
 		}
 		@Override
 		public void didCloseRewardedVideo(String location) { }
@@ -354,7 +360,7 @@ public class ChartboostPlugin extends CordovaPlugin{
 		
 		@Override
 		public void didDisplayRewardedVideo(String location) {
-			this.doSuccessCallback(location, ACTION_SHOW_REWARDVIDEO);
+			me.doSuccessCallback(location, ACTION_SHOW_REWARDVIDEO);
 		}
 		@Override
 		public void willDisplayVideo(String location) { }
