@@ -53,6 +53,13 @@
 	[Chartboost showInterstitial:location];
 }
 
+-(void) setDidDismissInterstitialCallback:(CDVInvokedUrlCommand*)command {
+	NSString* location = [command.arguments objectAtIndex:0];
+	NSString* callbackId = command.callbackId;
+    	NSString* callbackKey = [NSString stringWithFormat:@"setDidDismissInterstitialCallback:%@", location];
+	[_queue setObject: callbackId forKey:callbackKey];
+}
+
 -(void) cacheInterstitial:(CDVInvokedUrlCommand*)command {
     NSString* location = [command.arguments objectAtIndex:0];
     NSString* callbackId = command.callbackId;
@@ -131,6 +138,17 @@
 // Called before an interstitial will be displayed on the screen.
 -(BOOL) shouldDisplayInterstitial:(CBLocation)location{
 	return YES;
+}
+
+//called after intersittial is dismissed
+- (void)didDismissInterstitial:(CBLocation)location {
+    NSString* callbackKey = [NSString stringWithFormat:@"setDidDismissInterstitialCallback:%@", location];
+    if(_queue != nil && [_queue objectForKey:callbackKey] != nil){
+		NSString* callbackId = [_queue objectForKey:callbackKey];
+		[_queue removeObjectForKey:callbackKey];
+		CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+		[self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+    }
 }
 
 // Called after an interstitial has been displayed on the screen.
