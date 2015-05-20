@@ -1,0 +1,39 @@
+{
+  "name": "cordova-chartboost-plugin",
+  "version": "0.4.0",
+  "description": "Cordova Chartboost plugin. Forked from SpilGames's plugin.",
+  "cordova": {
+    "id": "com.portnou.cordova.plugin.chartboost",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexportnoy/cordova-chartboost-plugin.git"
+  },
+  "keywords": [
+    "chartboost",
+    "ads",
+    "monetization",
+    "games",
+    "ios",
+    "android",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Alexander S Portnoy",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/alexportnoy/cordova-chartboost-plugin/issues"
+  },
+  "homepage": "https://github.com/alexportnoy/cordova-chartboost-plugin"
+}

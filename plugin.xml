@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.spilgames.chartboost.plugin"
-    version="0.1">
+    id="com.portnou.cordova.plugin.chartboost"
+    version="0.4.0">
+
     <name>Cordova Chartboost Plugin</name>
-    <description>Cordova Chartboost plugin</description>
-    <author>Spil Games</author>
+    <description>Cordova Chartboost plugin. Forked from SpilGames's plugin.</description>
+    <keywords>chartboost,ads,monetization,games,ios,android</keywords>
+    <repo>https://github.com/alexportnoy/cordova-chartboost-plugin</repo>
+    <author>Alexander S Portnoy</author>
+    <license>Apache 2.0</license>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -20,7 +24,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="ChartboostPlugin" >
-                <param name="android-package" value="com.spilgames.chartboost.plugin.ChartboostPlugin"/>
+                <param name="android-package" value="com.portnou.cordova.plugin.chartboost.ChartboostPlugin"/>
             </feature>
         </config-file>
         
@@ -29,7 +33,7 @@
                 <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
         
-        <source-file src="src/android/ChartboostPlugin.java" target-dir="src/com/spilgames/chartboost/plugin" />
+        <source-file src="src/android/ChartboostPlugin.java" target-dir="src/com/portnou/cordova/plugin/chartboost" />
         <source-file src="libs/chartboost.jar" target-dir="libs" />
 
     </platform>
