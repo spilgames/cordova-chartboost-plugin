@@ -1,4 +1,4 @@
-Cordova Chartboost plugin v 0.3
+Cordova Chartboost plugin v 0.4
 =============
 
 This plugin will allow you to run Chartboost on cordova projects.
@@ -49,12 +49,16 @@ SUPPORTED PLATFORMS
 TODO
 ------
 
-- Callbacks implementation for Android
 - Video Ads calls implementation for Android
 - MoreApps calls implementation for Android
 
 CHANGELOG
 ---------
+
+v0.4 (by danmorton)
+- Callbacks implementation on Android
+- Support for didDissmiss callback on iOS/Android
+- Bugfixes
 
 v0.3:
 First version of forked plugin:
